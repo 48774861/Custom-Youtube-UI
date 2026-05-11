@@ -1,16 +1,23 @@
-/* Base page */
+/* =========================
+   BASE PAGE (SAFE SCROLL)
+========================= */
+
 html, body, ytd-app {
     margin: 0 !important;
     padding: 0 !important;
     width: 100% !important;
     height: 100% !important;
     background: black !important;
-    overflow: hidden !important;
+    overflow-y: auto !important; /* FIX: allow scrolling */
 }
 
-/* Keep top bar */
+/* =========================
+   YOUTUBE UI CLEANUP
+========================= */
+
+/* Keep top bar hidden (your custom UI replaces it) */
 #masthead {
-    z-index: 9999 !important;
+    display: none !important;
 }
 
 /* Remove distractions */
@@ -21,57 +28,52 @@ html, body, ytd-app {
     display: none !important;
 }
 
-/* Full viewport layout */
+/* =========================
+   WATCH PAGE LAYOUT (CINEMA MODE)
+========================= */
+
 ytd-watch-flexy {
     width: 100vw !important;
-    height: 100vh !important;
+    height: auto !important; /* FIX: prevents scroll lock */
 }
 
-/* KEY FIX: break YouTube's width-first constraint */
+/* IMPORTANT: DO NOT lock full height anymore */
 #columns {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
 
     width: 100vw !important;
-    height: 100vh !important;
+    height: auto !important; /* FIX */
 }
 
-/* Player wrapper becomes a "fit box" */
+/* Player container */
 #primary {
     width: 100vw !important;
-    height: 100vh !important;
+    height: auto !important; /* FIX */
 
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
 }
 
-/* 🔥 THE REAL FIX: force 16:9 scaling manually */
+/* Video scaling (16:9 responsive) */
 #player,
 #player-container,
 #player-container-outer,
 #full-bleed-container {
     width: 100vw !important;
-    height: 56.25vw !important;  /* 16:9 based on width */
+    height: 56.25vw !important;  /* 16:9 ratio */
 
-    max-height: 100vh !important;
     max-width: 177.78vh !important;
+    max-height: 100vh !important;
 
     margin: auto !important;
 }
 
-
-
-
-
-
-
-
-/* Hide YouTube top bar */
-#masthead {
-    display: none !important;
-}
+/* =========================
+   SIDEBAR SYSTEM
+========================= */
 
 /* Edge trigger zone */
 #edge-zone {
@@ -85,18 +87,18 @@ ytd-watch-flexy {
     z-index: 99998;
 }
 
-/* Sidebar base */
+/* Sidebar (glass floating panel) */
 #custom-sidebar {
     position: fixed;
     left: 0;
 
     top: 50%;
-    transform: translate(-230px, -50%); /* hidden + vertically centered */
+    transform: translate(-230px, -50%);
 
     width: 36px;
-    height: 40vh; /* 40% of viewport height */
+    height: 40vh;
 
-    background: rgba(20, 20, 20, 0.1); /* transparent glass */
+    background: rgba(20, 20, 20, 0.15);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 
@@ -111,7 +113,7 @@ ytd-watch-flexy {
     transition: transform 0.25s ease;
 }
 
-/* Open state */
+/* Sidebar open state */
 #custom-sidebar.open {
     transform: translate(0, -50%);
 }
@@ -120,4 +122,47 @@ ytd-watch-flexy {
 #yt-logo {
     width: 36px;
     cursor: pointer;
+}
+
+
+
+
+
+
+/* Default (everything scrolls normally) */
+html, body {
+    overflow-y: auto !important;
+}
+
+/* WATCH MODE LOCK */
+html.cinema-mode,
+body.cinema-mode {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+/* YouTube internal scroll root */
+ytd-app {
+    overflow-y: auto !important;
+}
+
+html.cinema-mode ytd-app,
+body.cinema-mode ytd-app {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+/* Only affect watch mode */
+html.watch-shift ytd-watch-flexy {
+    transform: translateY(-56px) !important;
+}
+
+/* Backup: shift main layout container */
+html.watch-shift #columns {
+    transform: translateY(-56px) !important;
+}
+
+/* Ensure no clipping */
+html.watch-shift {
+    overflow: hidden !important;
 }
