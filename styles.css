@@ -1,0 +1,123 @@
+/* Base page */
+html, body, ytd-app {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: black !important;
+    overflow: hidden !important;
+}
+
+/* Keep top bar */
+#masthead {
+    z-index: 9999 !important;
+}
+
+/* Remove distractions */
+#secondary,
+#below,
+#comments,
+#related {
+    display: none !important;
+}
+
+/* Full viewport layout */
+ytd-watch-flexy {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+/* KEY FIX: break YouTube's width-first constraint */
+#columns {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+/* Player wrapper becomes a "fit box" */
+#primary {
+    width: 100vw !important;
+    height: 100vh !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* 🔥 THE REAL FIX: force 16:9 scaling manually */
+#player,
+#player-container,
+#player-container-outer,
+#full-bleed-container {
+    width: 100vw !important;
+    height: 56.25vw !important;  /* 16:9 based on width */
+
+    max-height: 100vh !important;
+    max-width: 177.78vh !important;
+
+    margin: auto !important;
+}
+
+
+
+
+
+
+
+
+/* Hide YouTube top bar */
+#masthead {
+    display: none !important;
+}
+
+/* Edge trigger zone */
+#edge-zone {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 12px;
+    height: 100vh;
+
+    z-index: 99998;
+}
+
+/* Sidebar base */
+#custom-sidebar {
+    position: fixed;
+    left: 0;
+
+    top: 50%;
+    transform: translate(-230px, -50%); /* hidden + vertically centered */
+
+    width: 36px;
+    height: 40vh; /* 40% of viewport height */
+
+    background: rgba(20, 20, 20, 0.1); /* transparent glass */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 16px;
+
+    z-index: 99999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: transform 0.25s ease;
+}
+
+/* Open state */
+#custom-sidebar.open {
+    transform: translate(0, -50%);
+}
+
+/* YouTube icon */
+#yt-logo {
+    width: 36px;
+    cursor: pointer;
+}

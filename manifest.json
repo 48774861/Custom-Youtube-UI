@@ -1,0 +1,25 @@
+
+{
+  "manifest_version": 3,
+  "name": "YouTube Custom UI",
+  "version": "1.0",
+
+  "permissions": ["storage"],
+
+  "host_permissions": ["*://*.youtube.com/*"],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["youtube.co.png"],
+      "matches": ["*://*.youtube.com/*"]
+    }
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js", "searchbar.js"],
+      "css": ["styles.css"]
+    }
+  ]
+}
