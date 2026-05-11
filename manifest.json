@@ -10,7 +10,7 @@
 
   "web_accessible_resources": [
     {
-      "resources": ["youtube.co.png"],
+      "resources": ["youtube.co.png", "history.png", "watchlater.png"],
       "matches": ["*://*.youtube.com/*"]
     }
   ],
