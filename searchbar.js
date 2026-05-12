@@ -39,15 +39,21 @@ function setupEdgeTrigger() {
         const x = e.clientX;
         const now = Date.now();
 
-        // OPEN
-        if (x <= 36 && !isOpen) {
+        const viewportWidth = window.innerWidth;
+
+        // OPEN (right edge)
+        if (x >= viewportWidth - 36 && !isOpen) {
             sidebar.classList.add("open");
             isOpen = true;
             lastToggle = now;
         }
 
-        // CLOSE (with small delay buffer to prevent flicker)
-        if (x > 80 && isOpen && now - lastToggle > 150) {
+        // CLOSE
+        if (
+            x < viewportWidth - 80 &&
+            isOpen &&
+            now - lastToggle > 150
+        ) {
             sidebar.classList.remove("open");
             isOpen = false;
         }
