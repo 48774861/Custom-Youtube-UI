@@ -42,7 +42,7 @@ html, body, ytd-app {
     height: auto !important;
 }
 
-.watch-shift #columns {
+.watch-shift ytd-watch-flexy #columns {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -51,7 +51,7 @@ html, body, ytd-app {
 }
 
 /* Player layout */
-#primary {
+.watch-shift #primary {
     width: 100vw !important;
     display: flex !important;
     justify-content: center !important;
