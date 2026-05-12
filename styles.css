@@ -1,42 +1,32 @@
-/* =========================
-   BASE PAGE (SAFE SCROLL)
-========================= */
-
+/* BASE PAGE (SAFE SCROLL) */
 html, body, ytd-app {
     margin: 0 !important;
     padding: 0 !important;
     width: 100% !important;
     height: 100% !important;
     background: black !important;
-    overflow-y: auto !important; /* FIX: allow scrolling */
+    overflow-y: auto !important;
 }
 
-/* =========================
-   YOUTUBE UI CLEANUP
-========================= */
+/* GLOBAL UI CLEANUP */
 
+/* Always hidden elements */
+#secondary, #below, #comments, #related {
+    display: none !important;
+}
+
+/* WATCH MODE (cinema layout) */
+/* Masthead only hidden in watch mode */
 .watch-shift #masthead {
     display: none !important;
 }
 
-/* Remove distractions */
-#secondary,
-#below,
-#comments,
-#related {
-    display: none !important;
-}
-
-/* =========================
-   WATCH PAGE LAYOUT (CINEMA MODE)
-========================= */
-
-ytd-watch-flexy {
+/* Page structure */
+.watch-shift ytd-watch-flexy {
     width: 100vw !important;
-    height: auto !important; /* FIX: prevents scroll lock */
+    height: auto !important;
 }
 
-/* IMPORTANT: DO NOT lock full height anymore */
 .watch-shift #columns {
     display: flex !important;
     justify-content: center !important;
@@ -45,60 +35,83 @@ ytd-watch-flexy {
     height: auto !important;
 }
 
-/* Player container */
+/* Player layout */
 #primary {
     width: 100vw !important;
-    height: auto !important; /* FIX */
-
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
 }
 
-/* Video scaling (16:9 responsive) */
+/* Video scaling */
 .watch-shift #player,
 .watch-shift #player-container,
 .watch-shift #player-container-outer,
 .watch-shift #full-bleed-container {
     width: 100vw !important;
     height: 56.25vw !important;
-
     max-width: 177.78vh !important;
     max-height: 100vh !important;
-
     margin: auto !important;
+}
+
+/* Watch shift offset (disabled in fullscreen via JS class) */
+html.watch-shift:not(.video-fullscreen) ytd-watch-flexy,
+html.watch-shift:not(.video-fullscreen) #columns {
+    transform: translateY(-56px) !important;
+}
+
+/* =========================
+   FULLSCREEN OVERRIDE
+========================= */
+
+html.video-fullscreen.watch-shift ytd-watch-flexy,
+html.video-fullscreen.watch-shift #columns {
+    transform: none !important;
+    margin-top: 0 !important;
+}
+
+/* =========================
+   SCROLL BEHAVIOR
+========================= */
+
+/* Normal scroll */
+html, body {
+    overflow-y: auto !important;
+}
+
+/* Cinema mode lock */
+html.cinema-mode,
+body.cinema-mode {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+html.cinema-mode ytd-app {
+    overflow: hidden !important;
+    height: 100vh !important;
 }
 
 /* =========================
    SIDEBAR SYSTEM
 ========================= */
 
-/* Edge trigger zone */
+/* Edge trigger (right side) */
 #edge-zone {
     all: unset;
-
     position: fixed !important;
-
     top: 0 !important;
     right: 0 !important;
-    left: unset !important;
-
     width: 12px !important;
     height: 100vh !important;
-
     z-index: 2147483647 !important;
-
-    background: red !important;
 }
 
-/* Sidebar (glass floating panel) */
-
-/* SIDEBAR CONTAINER */
+/* Sidebar */
 #custom-sidebar {
     position: fixed;
     right: 0;
     top: 50%;
-
     transform: translate(230px, -50%);
 
     width: 48px;
@@ -107,7 +120,6 @@ ytd-watch-flexy {
     display: flex;
     flex-direction: column;
     gap: 14px;
-
     align-items: center;
 
     background: rgba(20, 20, 20, 0.15);
@@ -116,26 +128,21 @@ ytd-watch-flexy {
 
     border-radius: 16px;
     z-index: 99999;
-
     transition: transform 0.25s ease;
 }
 
-/* OPEN STATE */
 #custom-sidebar.open {
     transform: translate(-8px, -50%);
 }
 
-/* ICON BUTTONS */
+/* Sidebar items */
 .sidebar-item {
     width: 36px;
     height: 36px;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     border-radius: 10px;
-
     transition: background 0.2s ease;
 }
 
@@ -148,54 +155,14 @@ ytd-watch-flexy {
     height: 24px;
 }
 
-/* YouTube icon */
 #yt-logo {
     width: 36px;
     cursor: pointer;
 }
 
-
-
-
-
-
-/* Default (everything scrolls normally) */
-html, body {
-    overflow-y: auto !important;
-}
-
-/* WATCH MODE LOCK */
-html.cinema-mode,
-body.cinema-mode {
-    overflow: hidden !important;
-    height: 100vh !important;
-}
-
-/* YouTube internal scroll root */
-ytd-app {
-    overflow-y: auto !important;
-}
-
-html.cinema-mode ytd-app,
-body.cinema-mode ytd-app {
-    overflow: hidden !important;
-    height: 100vh !important;
-}
-
-/* Only affect watch mode */
-html.watch-shift ytd-watch-flexy {
-    transform: translateY(-56px) !important;
-}
-
-/* Backup: shift main layout container */
-html.watch-shift #columns {
-    transform: translateY(-56px) !important;
-}
-
-/* Ensure no clipping */
-html.watch-shift {
-    overflow: hidden !important;
-}
+/* =========================
+   SCROLLBAR
+========================= */
 
 ::-webkit-scrollbar {
     width: 6px;
@@ -212,10 +179,4 @@ html.watch-shift {
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.2);
-}
-
-html.video-fullscreen.watch-shift ytd-watch-flexy,
-html.video-fullscreen.watch-shift #columns {
-    transform: none !important;
-    margin-top: 0 !important;
 }
