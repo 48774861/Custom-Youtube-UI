@@ -1,7 +1,8 @@
 
 {
   "manifest_version": 3,
-  "name": "YouTube Custom UI",
+  "name": "YouTube Custom Interface",
+  "description": "Custom YouTube layout with cinema mode, sidebar navigation, and UI cleanup enhancements.",
   "version": "1.0",
 
   "permissions": ["storage"],
