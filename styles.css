@@ -195,3 +195,24 @@ html.cinema-mode ytd-app {
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.2);
 }
+
+#masthead-container,
+#masthead {
+    background: rgba(0, 0, 0, 0.858) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.046) !important;
+}
+
+/* ytd-feed-filter-chip-bar-renderer {
+    background: rgba(255, 0, 0, 0.25) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+} */
+
+/* ytd-feed-filter-chip-bar-renderer yt-chip-cloud-chip-renderer {
+    background: rgb(0, 255, 64) !important;
+    color: white !important;
+    transition: 0.2s ease;
+} */

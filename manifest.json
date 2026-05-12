@@ -11,7 +11,7 @@
 
   "web_accessible_resources": [
     {
-      "resources": ["youtube.co.png", "history.png", "watchlater.png", "villagevideo.mp4"],
+      "resources": ["youtube.co.png", "history.png", "watchlater.png", "villagevideo.mp4", "frierenruinsvideo.mp4"],
       "matches": ["*://*.youtube.com/*"]
     }
   ],
