@@ -57,6 +57,22 @@ function updateFullscreenState() {
     document.documentElement.classList.toggle("video-fullscreen", isFullscreen);
 }
 
+function addBackgroundVideo() {
+    if (document.getElementById("bg-video")) return;
+
+    const video = document.createElement("video");
+    video.id = "bg-video";
+    video.src = chrome.runtime.getURL("villagevideo.mp4");
+    video.autoplay = true;
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
+
+    document.body.prepend(video);
+}
+
+addBackgroundVideo();
+
 /* Run repeatedly because YouTube is dynamic */
 setInterval(enableTheaterMode, 100);
 setInterval(updateFullscreenState, 300);

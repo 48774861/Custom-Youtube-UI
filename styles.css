@@ -4,8 +4,23 @@ html, body, ytd-app {
     padding: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    background: black !important;
+    background: transparent !important;
     overflow-y: auto !important;
+}
+
+/* BACKGROUND VIDEO */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    object-fit: cover;
+
+    z-index: -1;
+    pointer-events: none;
 }
 
 /* GLOBAL UI CLEANUP */
