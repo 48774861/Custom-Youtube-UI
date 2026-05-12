@@ -37,13 +37,12 @@ ytd-watch-flexy {
 }
 
 /* IMPORTANT: DO NOT lock full height anymore */
-#columns {
+.watch-shift #columns {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-
     width: 100vw !important;
-    height: auto !important; /* FIX */
+    height: auto !important;
 }
 
 /* Player container */
@@ -57,12 +56,12 @@ ytd-watch-flexy {
 }
 
 /* Video scaling (16:9 responsive) */
-#player,
-#player-container,
-#player-container-outer,
-#full-bleed-container {
+.watch-shift #player,
+.watch-shift #player-container,
+.watch-shift #player-container-outer,
+.watch-shift #full-bleed-container {
     width: 100vw !important;
-    height: 56.25vw !important;  /* 16:9 ratio */
+    height: 56.25vw !important;
 
     max-width: 177.78vh !important;
     max-height: 100vh !important;
@@ -213,4 +212,10 @@ html.watch-shift {
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.2);
+}
+
+html.video-fullscreen.watch-shift ytd-watch-flexy,
+html.video-fullscreen.watch-shift #columns {
+    transform: none !important;
+    margin-top: 0 !important;
 }

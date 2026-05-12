@@ -13,9 +13,6 @@ function enableTheaterMode() {
     }
 }
 
-/* Run repeatedly because YouTube is dynamic */
-setInterval(enableTheaterMode, 100);
-
 function isWatchPage() {
     return window.location.pathname === "/watch";
 }
@@ -54,6 +51,15 @@ function applyScrollMode() {
     }
 }
 
+function updateFullscreenState() {
+    const isFullscreen = !!document.querySelector(".ytp-fullscreen");
+
+    document.documentElement.classList.toggle("video-fullscreen", isFullscreen);
+}
+
+/* Run repeatedly because YouTube is dynamic */
+setInterval(enableTheaterMode, 100);
+setInterval(updateFullscreenState, 300);
 updatePageState();
 /* YouTube SPA navigation watcher */
 let lastUrl = location.href;
