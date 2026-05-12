@@ -17,17 +17,14 @@ function enableTheaterMode() {
 setInterval(enableTheaterMode, 100);
 
 function isWatchPage() {
-    return window.location.href.includes("watch?v=");
+    return window.location.pathname === "/watch";
 }
 
-function applyWatchLayoutShift() {
-    if (isWatchPage()) {
-        document.documentElement.classList.add("watch-shift");
-        document.body.classList.add("watch-shift");
-    } else {
-        document.documentElement.classList.remove("watch-shift");
-        document.body.classList.remove("watch-shift");
-    }
+function updatePageState() {
+    const watch = isWatchPage();
+
+    document.documentElement.classList.toggle("watch-shift", watch);
+    document.body.classList.toggle("watch-shift", watch);
 }
 
 function applyScrollMode() {
@@ -57,17 +54,14 @@ function applyScrollMode() {
     }
 }
 
+updatePageState();
 /* YouTube SPA navigation watcher */
 let lastUrl = location.href;
 
 setInterval(() => {
     if (location.href !== lastUrl) {
         lastUrl = location.href;
-        applyWatchLayoutShift();
+        updatePageState();
+        applyScrollMode();
     }
 }, 300);
-
-applyWatchLayoutShift();
-
-/* initial run */
-applyScrollMode();

@@ -15,8 +15,7 @@ html, body, ytd-app {
    YOUTUBE UI CLEANUP
 ========================= */
 
-/* Keep top bar hidden (your custom UI replaces it) */
-#masthead {
+.watch-shift #masthead {
     display: none !important;
 }
 
